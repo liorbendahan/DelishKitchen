@@ -1,0 +1,16 @@
+In react:
+
+Axios.post("http://localhost:5000/addUser",{
+      user: nameTask
+    }).then(console.log("success"))
+
+
+in server:
+
+app.post('/addUser',(req,res) =>{
+    const name = req.body.user
+    console.log(name)
+})
+
+
+
