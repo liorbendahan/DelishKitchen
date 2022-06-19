@@ -2,7 +2,8 @@ import Axios from 'axios';
 
 URL = "http://localhost:5000"
 
-//Send to the server a new user 
-export const SendNewUser = (username) => Axios.post(`${URL}/addUser`,{
-      user: username
-    }).then(console.log(username));
+//Here we send the server a new user for him to add.
+export const addNewUser = (username, password) => Axios.post(`${URL}/addNewUser`,{
+  user: username,
+  password: password
+}).then(console.log("Added new user: username: " + username + " " + password));

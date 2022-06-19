@@ -1,27 +1,21 @@
-import './App.css';
-import { useState } from 'react';
-import { SendNewUser } from './api/posts.js';
-
-
+import './Style.css';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
+import {BrowserRouter as Router,Routes, Route,Switch, Link} from 'react-router-dom';
 
 const App = () => {
-  const [username, setUsername] = useState('');
 
-  const addUser = (e) => {
-    e.preventDefault()
-    SendNewUser(username)
-  }
+  return ( 
+    <Router>
+      <div className= "App">
 
-  return (
-    <form className="App" onSubmit={addUser}>
-      <div className="form-control">
-         <label>Insert Task</label>
-         <input type="text" 
-         placeholder="Type here..." value={username} 
-         onChange={(e) => setUsername(e.target.value)}/>
+      <Routes>
+        <Route exact path='/' element={<Login />}/>
+        <Route path='/SignUp' element={<SignUp />}/>
+      </Routes>
+
       </div>
-      <input type='submit' value='Save Task' className='btn btn-block'/>
-    </form>
+    </Router>
   );
 }
 

@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: #62c99a;
+    background: linear-gradient(to right, #62c87b, #63c86d);
+  }
+  
+  .center {
+    font-family: 'Montserrat', sans-serif;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    color: white;
+    align-items: center;
+    height: 90vh;
+    padding: 30px;
+  }
+
+  .input input {
+    width: 100%;
+    outline: none;
+    height: 35px;
+    font-size: 18px;
+    margin: 5px;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat';
+    background-color: rgba(255, 255, 255, 0.3);
+    border:none;
+    position: relative;
+    padding: 0px 25px;
+
+  } 
+
+  .par p{
+    color: rgb(255, 255, 255);
+  }
+
+
+  .field input {
+    width: 104%;
+    height: 30px;
+    margin: 1px;
+    padding: 1px 99px;
+    font-size: 20px;
+    border-radius: 2px;
+    border-bottom: 1;
+    color: #62c99a;
+    background-color: white;
+    border:none;
+  }
+  
+  .field:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0px 4px 20px 0px rgba(43, 218, 125, 0.05);
+  }
+
+  
+  .field p.predicted {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-family: "Gotham SSm A", "Gotham SSm B", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #e0e0e0;
+    opacity: 1;
+    pointer-events: none;
+  }
+  
