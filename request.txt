@@ -12,5 +12,55 @@ app.post('/addUser',(req,res) =>{
     console.log(name)
 })
 
+const user = await fetch('http://localhost:5000/getCurrentUser')
+    .then(response => response.json()).then(data => this.setState({ totalReactPackages: data.total }));
+    console.log(user);
+
+const Post = ({title,description,logo,username,uploadDate}) => {
+  return (
+    <div className="container">
+      <div className="recipe">
+        <div>
+            <p>{uploadDate}</p>
+        </div>
+        
+        <div>
+            <img src={logo !== '' ? logo :'http://via.placeholder.com/400'}/>
+        </div>
+        <div>
+            <span>{title}</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const Post = () => {
+  return (
+    <div className="movie">
+        <div>
+            <h2>hh</h2>
+        </div>
+        <div>
+            <p>hh</p>
+        </div>
+        <div className="img">
+        <img src={'https://smalltotall.info/wp-content/uploads/2017/04/google-favicon-vector-400x400.png'}/>
+        </div>
+    </div>
+  )
+}
+
+const Post = () => {
+  return (
+    <div className="cardWrap">
+     <div className="card">
+      <div className="cardImage">
+        <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt="Pic 1"/>
+        </div>
+     </div>
+    </div>
+  )
+}
 
 

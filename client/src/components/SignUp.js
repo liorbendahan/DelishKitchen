@@ -1,8 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { addNewUser } from '../api/posts.js';
-import { getAllUsers } from '../api/gets.js';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 const SignUp = () => {
@@ -13,13 +12,14 @@ const SignUp = () => {
 
   /*Handles the inputs, check if the user is taken and if the 2 passwords correspond to each other, 
     Then calls addNewUser() to send the new user to the server.*/
-  const CheckNewUser = (e) => {
+  async function CheckNewUser(e) {
     e.preventDefault()
     //getAllUsers()- Get all the curent users from the server.
-    const users = getAllUsers();
+    var response = await fetch('http://localhost:5000/getUsers');
+    var users = await response.json();
     var already_existing = false;
     //Check if the input username is taken (we loop on all users in db).
-    users.map(element => {
+    Array.from(users).map(element => {
       if (element.username === username) {
         //already_existing = true if the username is in the db (the username already exists).
         already_existing = true;
@@ -71,7 +71,7 @@ const SignUp = () => {
           <input type='submit' value='Log in'/>
         </div>
         <div className='par'>
-        <Link to= '/' style={{ textDecoration: 'none' }}>
+        <Link to= '/LogIn' style={{ textDecoration: 'none' }}>
           <p>Have an account? Sign In</p>
         </Link>
         </div>

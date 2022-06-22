@@ -1,45 +1,43 @@
 import React from 'react'
-import { useState , useEffect} from 'react';
+import { useState} from 'react';
 import TextField from '@mui/material/TextField';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import { getAllUsers } from '../api/gets.js';
+import {Link} from 'react-router-dom';
+import { sendCurrentUser } from '../api/posts.js';
+import { useNavigate } from 'react-router-dom';
 
 
-const Login = () => {
+
+const Login = ({onClick}) => {
   //Variables for the inputs.
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  var one_time = true;
-  useEffect(() =>{
-    if (one_time) {
-      getAllUsers();
-      one_time = false;
-    }
-  },[]);
+  const navigate = useNavigate();
 
   /*Get all the current users from the server and then checks if the 
   username and password input are in the db (if the user exists)
   if so, we enter the aplicacion. */
-  const onSubmit = (e) => {
+  async function onSubmit(e) {
     e.preventDefault()
     //getAllUsers()- Get all the curent users from the server.
-    const users = getAllUsers();
+    var response = await fetch('http://localhost:5000/getUsers');
+    var users = await response.json();
     var matching = false;
-    users.map(element => {
+    Array.from(users).map(element => {
       if (element.username === username &&
         element.password === password)
         {
           //matching = true if the username & password matches the db.
           matching = true;
         }
+
     });
     if (matching) {
-      console.log('Connected!')
-      setUsername("")
-      setPassword("")
+      sendCurrentUser(username, password);
+      //Navegates to Home screen.
+      navigate('/');
       matching = false;
     } else {
-      console.log("Wrong username of password");
+      console.log("Wrong username or password");
     } 
   }
   return (
@@ -57,7 +55,7 @@ const Login = () => {
          onChange={(e) => setPassword(e.target.value)}/>
         </div>
         <div className='field'>
-          <input type='submit' value='Log in'/>
+          <input type='submit' onClick={onClick} value='Log in'/>
         </div>
         <div className='par'>
         <Link to= '/SignUp' style={{ textDecoration: 'none' }}>

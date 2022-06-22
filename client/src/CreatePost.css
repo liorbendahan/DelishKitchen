@@ -1,0 +1,92 @@
+
+
+.container-create-post {
+    width: 50%;
+    height: 730px;
+    margin-top: 3rem;
+    margin-left: 21rem;
+    display: block;
+    flex-wrap: wrap;
+    border-radius: 4px;
+    background: rgb(255, 255, 255);
+}
+.second {
+    width: 120%;
+    height: 500px;
+    margin-top: 3rem;
+    margin-left: 7rem;
+    display: block;
+    flex-wrap: wrap;
+    border-radius: 4px;
+    background: white;
+}
+.third {
+    display: flex;
+}
+
+.input-create-post input {
+    width: 40%;
+    outline: none;
+    height: 35px;
+    font-size: 18px;
+    margin: 15px;
+    border-radius: 4px;
+    color: rgb(166, 31, 31);
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(209, 50, 201, 0.841);
+    border:none;
+    position: relative;
+    padding: 0px 15px;
+} 
+
+.p p {
+    margin: 16px;
+    height: 0px;
+    color:blue;
+    font-family: 'Poppins', sans-serif;
+}
+
+.title h1 {
+    height: 40px;
+    color:blue;
+    padding: 10px 17px;
+}
+
+.description textarea {
+    width: 420px;
+    height: 280px;
+    color:rgb(132, 9, 240);
+    margin: 15px;
+    resize: none; 
+}
+
+.logo p {
+    margin: 16px;
+    height: 0px;
+    color:rgb(12, 12, 73);
+    font-family: 'Poppins', sans-serif;
+}
+
+.title2 h2 {
+    color:white;
+}
+
+.img-input input {
+    background-color: white;
+    margin: 14px;
+}
+
+.input2 input {
+    width: 50%;
+    outline: none;
+    height: 35px;
+    font-size: 18px;
+    margin: 10px;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat';
+    background-color: rgb(249, 53, 53);
+    border:none;
+    position: relative;
+
+  } 

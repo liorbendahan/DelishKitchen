@@ -4,7 +4,7 @@
   
   body {
     background: #62c99a;
-    background: linear-gradient(to right, #62c87b, #63c86d);
+    background: linear-gradient(to right, #62c99a, #63c86d);
   }
   
   .center {
@@ -16,6 +16,7 @@
     align-items: center;
     height: 90vh;
     padding: 30px;
+    
   }
 
   .input input {
@@ -50,6 +51,7 @@
     color: #62c99a;
     background-color: white;
     border:none;
+    
   }
   
   .field:hover {
@@ -70,4 +72,6 @@
     opacity: 1;
     pointer-events: none;
   }
-  
+
+
+
