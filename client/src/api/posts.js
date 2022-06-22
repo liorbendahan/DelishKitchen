@@ -14,9 +14,11 @@ export const sendCurrentUser = (username, password) => Axios.post(`${URL}/sendCu
   password: password
 }).then(console.log("Sended current user: " + username + " " + password));
 
+//Here we send the server the title and description of the new post
 export const sendNewPost = (title, description) => Axios.post(`${URL}/sendNewPost`,{
   title: title,
   description: description
 }).then(console.log("Sended new post"));
 
-export const  sendImage = (image) =>  Axios.post('http://localhost:5000/sendImage',image);
+//Here we send the server the image from the CreatePost page.
+export const  sendImage = (image) =>  Axios.post(`${URL}/uploadImageToServer`, image).then();

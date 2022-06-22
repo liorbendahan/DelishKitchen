@@ -5,6 +5,7 @@ import cors from 'cors';
 const app = express();
 import multer from 'multer';
 import fs from 'fs';
+
 const CONNECTION_URL = 'mongodb+srv://liorbendahan:CXEdbkXMZBKdfcUj@cluster0.htsazjm.mongodb.net/?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 5000;
 
@@ -31,28 +32,37 @@ const PostModule = mongoose.model('posts', postSchema);
 
 app.use(bodyParser.json({limit: "30mb", extended:true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended:true}));
+app.use(express.static('upload'));
 app.use(cors());
 
+//Making our mongodb
 mongoose.connect(CONNECTION_URL,{ useNewUrlParser: true, useUnifiedTopology:true})
     .then(() => app.listen(PORT, () => console.log("server running")))
     .catch((error) => console.log(error.message));
 
-const upload = multer({ dest: './uploads/' })
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'upload')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+})
+const upload = multer({ storage: storage }).single('file')
 
-//Handeling the get,post request:
-app.post('/sendImage', upload.single('file'), function (req, res) {
-    let fileType = req.file.mimetype.split("/")[1]
-    let newFileName = req.file.filename + "." + fileType;
-    post_image_name = newFileName;
-    fs.rename(
-        `./uploads/${req.file.filename}`,
-        `./uploads/${newFileName}`,
-        function () {
-            console.log("Added image")
-            res.send("200")
-        }
-    )
-});
+
+//Here we get the image sent from the CreatePost page
+app.post('/uploadImageToServer', (req, res) => {
+    upload(req, res, (err) => {
+      if (err) {
+        res.sendStatus(500);
+      }else {
+        post_image_name = req.file.filename;
+        console.log("Got image " + post_image_name)
+      }
+    });
+  });
+
 /* Here we get a new user from the front,
 and then we add him to our db */
 app.post('/addNewUser',async (req,res) =>{
@@ -68,13 +78,15 @@ app.post('/addNewUser',async (req,res) =>{
         console.log(err);
     }
 });
-
+//Here we get the new users name and password.
 app.post('/sendCurrentUser',async (req,res) =>{
     current_username = req.body.user
     current_username_password = req.body.password
-    console.log(current_username + ' got ' + current_username_password)   
+    console.log("New user connected!")   
 });
 
+/* here we get the title and description of the new post, 
+And we upload it to the db */
 app.post('/sendNewPost',async (req,res) =>{
     const username = current_username
     const title = req.body.title
@@ -100,13 +112,13 @@ app.get('/getUsers', (req,res) =>{
         }
     })
 })
-
+//Here we send the username and password of the current client.
 app.get('/getCurrentUser', (req,res) =>{
     res.json({username: current_username, password: current_username_password});
     console.log(current_username + ' send ' + current_username_password)   
 
 })
-
+//Here we send all the posts that are currently created.
 app.get('/getAllPosts', (req,res) =>{
     PostModule.find({}, (err,result)=>{
         if (err) {

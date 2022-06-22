@@ -2,7 +2,7 @@
 
 .container-create-post {
     width: 50%;
-    height: 730px;
+    height: 660px;
     margin-top: 3rem;
     margin-left: 21rem;
     display: block;
@@ -90,3 +90,24 @@
     position: relative;
 
   } 
+
+  .input-submit input {
+    width: 70%;
+    outline: none;
+    height: 35px;
+    font-size: 18px;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    font-family: 'Montserrat';
+    background-color: rgba(77, 45, 220, 0.855);
+    border:none;
+    margin-left: 80px;
+    margin-top: 13px;
+  } 
+
+  .errors p {
+    padding: 0px 220px;
+    color:rgb(66, 164, 44);
+    font-family: 'Poppins', sans-serif;
+}
+  

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import {Link} from 'react-router-dom';
 import { sendCurrentUser } from '../api/posts.js';
@@ -11,7 +11,20 @@ const Login = ({onClick}) => {
   //Variables for the inputs.
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errortype, setErroType] = useState(false);
   const navigate = useNavigate();
+
+  var one_time = true;
+  useEffect(() => {
+    if (one_time) {
+      sendCurrentUser('','');
+    }
+    one_time = false;
+  }, []);
+
+  function sleep(ms){
+    return new Promise( resolver => setTimeout(resolver, ms));
+   };
 
   /*Get all the current users from the server and then checks if the 
   username and password input are in the db (if the user exists)
@@ -38,6 +51,10 @@ const Login = ({onClick}) => {
       matching = false;
     } else {
       console.log("Wrong username or password");
+      //Displays error message in front for 5 seconds.
+      setErroType(true);
+      await sleep(5000)
+      setErroType(false);
     } 
   }
   return (
@@ -55,12 +72,15 @@ const Login = ({onClick}) => {
          onChange={(e) => setPassword(e.target.value)}/>
         </div>
         <div className='field'>
-          <input type='submit' onClick={onClick} value='Log in'/>
+          <input type='submit' value='Log in'/>
         </div>
         <div className='par'>
         <Link to= '/SignUp' style={{ textDecoration: 'none' }}>
           <p>Need an account? Sign Up</p>    
         </Link>
+        </div>
+        <div>
+          {errortype && <p>Username or password are incorrect, Please try again!</p>}
         </div>
       </form>
     </div>

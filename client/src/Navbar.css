@@ -23,13 +23,13 @@
 
 .nav-menu {
   display: grid;
-  grid-template-columns: repeat(5,auto);
+  grid-template-columns: repeat(4,auto);
   grid-gap: 10px;
   list-style:none;
   text-align:center;
   width: 70vw;
   justify-content: end;
-  margin-right:2rem;
+  margin-right:3rem;
 }
 
 .nav-links {
@@ -46,24 +46,26 @@
 }
 
 .btn {
-  padding: 8px 27px;
+  padding: 10px 30px;
+  margin-top: 20px;
   border-radius:4px;
   outline: none;
   border:none;
   cursor:pointer;
-  background-color: #3acbf7;
   color: white;
+  background-color: #3acbf7;
   font-family: 'Poppins', sans-serif;
 }
 
 .btn:hover {
-  padding: 8px 27px;
+  padding: 10px 30px;
   background-color: white;
   color: #6568f4;
 }
 
 .fol  {
   width: 100%;
+  margin-top: 25px;
   outline: none;
   height: 30px;
   font-size: 18px;
