@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 
 
 const Home = () => {
-  const [searchTerm, setSearchTerm] = useState("Coo");
   const [posts, setPosts] = useState([]);
 
   var one_time = true;
@@ -16,13 +15,30 @@ const Home = () => {
     one_time = false;
   }, []);
 
-  const searchPosts = async () => {
+  const searchPosts = async (name) => {
     const response = await fetch('http://localhost:5000/getAllPosts');
     const data = await response.json();
-    console.log(data)
-    setPosts(data);
+    var posts = [];
+
+    if (name != undefined) {
+    Array.from(data).forEach((post,index) => (
+      posts.push(post)
+    ))
+
+    for( var i = 0; i < posts.length; i++){ 
+      var postTitle = posts[i].title.toLowerCase()
+      name = name.toLowerCase()
+      if (!(postTitle.includes(name))) { 
+        posts.splice(i, 1); 
+        i--; 
+      }
   
-  };
+    }
+    setPosts(posts);
+  } else {
+    setPosts(data);
+  }
+};
 
   const test = (e) => {
     e.preventDefault();
@@ -30,7 +46,7 @@ const Home = () => {
   }
   return (
     <div>
-      <NavBar />
+      <NavBar searchPost={searchPosts}/>
       <div className="container" onDoubleClick={test}>
       {posts?.length > 0 ? (
         <div className="container">

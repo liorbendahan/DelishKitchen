@@ -9,8 +9,7 @@ export var current_username = '';
 export var current_username_password = '';
 export var logged_in = false;
 
-const NavBar = () => {
-  const [postName, setPostName] = useState('');
+const NavBar = ({searchPost}) => {
   const [logged, setLoggedIn] = useState(false);
   const navigate = useNavigate();
 
@@ -21,6 +20,11 @@ const NavBar = () => {
     }
     one_time = false;
   }, []);
+
+  const sendPostName = async (e) => {
+    e.preventDefault();
+    searchPost(e.target.value)
+  }
 
   /* here we check if the user logged in to the app,
   only for change the "login" button to "log out" */
@@ -53,9 +57,9 @@ const NavBar = () => {
             </Link>
           </li>
           <li>
-          <input  className='fol' type="text" 
-              placeholder="Enter post" value={postName} 
-              onChange={(e) => setPostName(e.target.value)}/> 
+          <input  className='nav-input' type="text" 
+              placeholder="Enter post"
+              onChange={(e) => sendPostName(e)}/> 
               </li> 
               <li>
               <Button onClick={goToLogIn} 

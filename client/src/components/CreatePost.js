@@ -36,6 +36,7 @@ const CreatePost = () => {
       if (!wrongImg){
         //here we call sendImage() and sendNewPost() for sending the image and the input data to the server.
         sendImage(image);
+        await sleep(500)
         sendNewPost(title,description)
         //Displays successfull message in front for 5 seconds.
         setUploadedPost(true);
@@ -86,9 +87,9 @@ const CreatePost = () => {
       <div>
         <NavBar />
         {isLogged ? <div>
-      <div className="title container-create-post">
+      <div className="title-create-post container-create-post">
           <h1>Create new post</h1>
-            <div className="p">
+            <div className="p-create-post">
               <p>enter name of the recipe</p>
               <div className="input-create-post">
                 <input type="text" 
@@ -96,23 +97,23 @@ const CreatePost = () => {
                 onChange={(e) => setTitle(e.target.value)}/>
               </div>
               <p>Exelent! now enter description</p>
-              <div className="description">
+              <div className="description-create-post">
               <textarea
                 value={description} 
                 onChange={(e) => setDescription(e.target.value)}/>   
               </div>
-              <div className="logo">
+              <div className="logo-create-post">
                   <p>nice now lets upload an image:</p>
               </div>
-              <div className='img-input'>
+              <div className='img-input-create-post'>
               <input type="file" name='file' onChange={handleFileChange} />
               </div>
-              <div className='errors'>
+              <div className='errors-create-post'>
               {uploadedPost && <p>Created Post Succssesfuly!</p>}
               {error1 && <p>Please enter a valid image</p>}
               {error2 && <p>Title or Description empties!</p>}
               </div>
-               <div className='input-submit'>
+               <div className='input-submit-create-post'>
                  <input type='submit' onClick={handleSubmit} value='Upload'/>
                </div>
               </div> 

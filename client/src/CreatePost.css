@@ -10,19 +10,7 @@
     border-radius: 4px;
     background: rgb(255, 255, 255);
 }
-.second {
-    width: 120%;
-    height: 500px;
-    margin-top: 3rem;
-    margin-left: 7rem;
-    display: block;
-    flex-wrap: wrap;
-    border-radius: 4px;
-    background: white;
-}
-.third {
-    display: flex;
-}
+
 
 .input-create-post input {
     width: 40%;
@@ -39,20 +27,20 @@
     padding: 0px 15px;
 } 
 
-.p p {
+.p-create-post p {
     margin: 16px;
     height: 0px;
     color:blue;
     font-family: 'Poppins', sans-serif;
 }
 
-.title h1 {
+.title-create-post h1 {
     height: 40px;
     color:blue;
     padding: 10px 17px;
 }
 
-.description textarea {
+.description-create-post textarea {
     width: 420px;
     height: 280px;
     color:rgb(132, 9, 240);
@@ -60,38 +48,21 @@
     resize: none; 
 }
 
-.logo p {
+.logo-create-post p {
     margin: 16px;
     height: 0px;
     color:rgb(12, 12, 73);
     font-family: 'Poppins', sans-serif;
 }
 
-.title2 h2 {
-    color:white;
-}
 
-.img-input input {
+.img-input-create-post input {
     background-color: white;
     margin: 14px;
 }
 
-.input2 input {
-    width: 50%;
-    outline: none;
-    height: 35px;
-    font-size: 18px;
-    margin: 10px;
-    border-radius: 4px;
-    color: rgb(255, 255, 255);
-    font-family: 'Montserrat';
-    background-color: rgb(249, 53, 53);
-    border:none;
-    position: relative;
 
-  } 
-
-  .input-submit input {
+  .input-submit-create-post input {
     width: 70%;
     outline: none;
     height: 35px;
@@ -105,7 +76,7 @@
     margin-top: 13px;
   } 
 
-  .errors p {
+  .errors-create-post p {
     padding: 0px 220px;
     color:rgb(66, 164, 44);
     font-family: 'Poppins', sans-serif;

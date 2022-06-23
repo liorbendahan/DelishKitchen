@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 const app = express();
 import multer from 'multer';
-import fs from 'fs';
 
 const CONNECTION_URL = 'mongodb+srv://liorbendahan:CXEdbkXMZBKdfcUj@cluster0.htsazjm.mongodb.net/?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 5000;
