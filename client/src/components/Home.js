@@ -2,10 +2,11 @@ import React from 'react'
 import NavBar from './NavBar.js';
 import Post from './Post.js';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-
-const Home = () => {
+const Home = ({selectCurrentPost}) => {
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
   var one_time = true;
   useEffect(() => {
@@ -40,18 +41,18 @@ const Home = () => {
   }
 };
 
-  const test = (e) => {
-    e.preventDefault();
-    console.log("yay")
+  function test(post) {
+    navigate('/ShowPost');
+    selectCurrentPost(post);
   }
   return (
     <div>
       <NavBar searchPost={searchPosts}/>
-      <div className="container" onDoubleClick={test}>
+      <div className="container" >
       {posts?.length > 0 ? (
         <div className="container">
           {Array.from(posts).map((post,index) => (
-            <Post key={index}  post={post} />))}
+            <Post key={index}  post={post}  onDoubleClick={(e) => e.preventDefault() || test(post)}/>))}
         </div>
         ) : (
         <div className="empty">
