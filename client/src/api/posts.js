@@ -22,3 +22,14 @@ export const sendNewPost = (title, description) => Axios.post(`${URL}/sendNewPos
 
 //Here we send the server the image from the CreatePost page.
 export const  sendImage = (image) =>  Axios.post(`${URL}/uploadImageToServer`, image).then();
+
+//Here we send the server a new review for him to add to the db.
+export const  sendNewReview = (review, logo) =>  Axios.post(`${URL}/addNewReview`, {
+  description: review,
+  logo: logo
+}).then();
+
+//here we send the server a request to logout from the client.
+export const  logOut = () =>  Axios.post(`${URL}/logOut`, {}).then();
+
+

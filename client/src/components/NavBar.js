@@ -4,15 +4,13 @@ import '../Navbar.css'
 import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import {logOut} from '../api/posts'
 
-export var current_username = '';
-export var current_username_password = '';
-export var logged_in = false;
 
 const NavBar = ({searchPost}) => {
   const [logged, setLoggedIn] = useState(false);
   const navigate = useNavigate();
-
+  //In every rendering we want to make sure the client is still logged in.
   var one_time = true;
   useEffect(() => {
     if (one_time) {
@@ -21,6 +19,7 @@ const NavBar = ({searchPost}) => {
     one_time = false;
   }, []);
 
+  //Here we update the posts we show in the page to the client.
   const sendPostName = async (e) => {
     e.preventDefault();
     searchPost(e.target.value)
@@ -32,7 +31,6 @@ const NavBar = ({searchPost}) => {
     var response = await fetch('http://localhost:5000/getCurrentUser');
     var user = await response.json();
     if (user.username != '') {
-      console.log("hye")
       setLoggedIn(true);
     }
   }
@@ -40,6 +38,7 @@ const NavBar = ({searchPost}) => {
   const goToLogIn = (e) => {
     e.preventDefault()
     navigate('/LogIn')
+    logOut();
   }
 
   return (

@@ -24,7 +24,8 @@ const postSchema = new Schema({
     username: {type: 'string', required:true},
     title: {type: 'string', required:true},
     description:  {type: 'string', required:true},
-    logo:  {type: 'string', required:true}
+    logo:  {type: 'string', required:true},
+    reviews: {type: 'array', default: []},
 });
 const UserModule = mongoose.model('users', userSchema);
 const PostModule = mongoose.model('posts', postSchema);
@@ -91,7 +92,9 @@ app.post('/sendNewPost',async (req,res) =>{
     const title = req.body.title
     const description = req.body.description
     const logo = post_image_name
-    const post = {username: username, title: title, description: description, logo: logo};
+    const reviews = []
+    const post = {username: username, title: title,
+     description: description, logo: logo, reviews: reviews};
     const newPost = new PostModule(post);
     try {
         await newPost.save(async (err,newPostResult) => {
@@ -102,6 +105,22 @@ app.post('/sendNewPost',async (req,res) =>{
     } 
 });
 
+
+app.post('/addNewReview',async (req,res) =>{
+    await PostModule.findOneAndUpdate({
+        logo: req.body.logo,
+    },{
+        $push: { reviews: {username: current_username, description: req.body.description,
+        date: new Date().toLocaleDateString()}  }
+    });
+    console.log("Got new review")
+});
+
+app.post('/logOut',async (req,res) =>{
+    current_username = ''
+    current_username_password = ''
+    console.log("Logged out")
+});
 /* Here we send to the front all the current users from the db */
 app.get('/getUsers', (req,res) =>{
     UserModule.find({}, (err,result)=>{
@@ -114,7 +133,7 @@ app.get('/getUsers', (req,res) =>{
 //Here we send the username and password of the current client.
 app.get('/getCurrentUser', (req,res) =>{
     res.json({username: current_username, password: current_username_password});
-    console.log(current_username + ' send ' + current_username_password)   
+    console.log("Checked login" + current_username)   
 
 })
 //Here we send all the posts that are currently created.

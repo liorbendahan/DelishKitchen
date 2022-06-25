@@ -1,26 +1,17 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import TextField from '@mui/material/TextField';
 import {Link} from 'react-router-dom';
 import { sendCurrentUser } from '../api/posts.js';
 import { useNavigate } from 'react-router-dom';
 
 
 
-const Login = ({onClick}) => {
+const Login = () => {
   //Variables for the inputs.
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errortype, setErroType] = useState(false);
   const navigate = useNavigate();
-
-  var one_time = true;
-  useEffect(() => {
-    if (one_time) {
-      sendCurrentUser('','');
-    }
-    one_time = false;
-  }, []);
 
   function sleep(ms){
     return new Promise( resolver => setTimeout(resolver, ms));

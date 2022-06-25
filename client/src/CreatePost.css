@@ -2,12 +2,12 @@
 
 .container-create-post {
     width: 50%;
-    margin-top: 3rem;
+    margin-top: 1rem;
     margin-left: 23rem;
     display: block;
     flex-wrap: wrap;
     border-radius: 12px;
-    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg,#f1c299, #f8e5d5 100%);
 }
 
 
@@ -47,6 +47,7 @@
     width: 420px;
     height: 280px;
     color:#333333;
+    background: linear-gradient(90deg,#f1c299, #f8e5d5 100%);
     margin: 15px;
     resize: none; 
 }
@@ -77,6 +78,7 @@
     border:none;
     margin-left: 135px;
     margin-bottom: 13px;
+    margin-top: 10px;
 } 
 
 .errors-create-post p {

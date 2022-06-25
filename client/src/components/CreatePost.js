@@ -90,20 +90,20 @@ const CreatePost = () => {
       <div className="title-create-post container-create-post">
           <h1>Create new post</h1>
             <div className="p-create-post">
-              <p>enter name of the recipe</p>
+              <p>Type the name of the Recipe</p>
               <div className="input-create-post">
                 <input type="text" 
-                placeholder="Enter Title" value={title} 
+                placeholder="Recipe name" value={title} 
                 onChange={(e) => setTitle(e.target.value)}/>
               </div>
-              <p>Exelent! now enter description</p>
+              <p>Nice now please add the description:</p>
               <div className="description-create-post">
               <textarea
                 value={description} 
                 onChange={(e) => setDescription(e.target.value)}/>   
               </div>
               <div className="logo-create-post">
-                  <p>nice now lets upload an image:</p>
+                  <p>Were almos there, Now just choose an image of your taste.</p>
               </div>
               <div className='img-input-create-post'>
               <input type="file" name='file' onChange={handleFileChange} />

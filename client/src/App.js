@@ -12,12 +12,14 @@ const App = () => {
   const[currentDecPost, setCurrentDecPost] = useState('');
   const[currentUsernamePost, setCurrentUsernamePost] = useState('');
   const[currentLogoPost, setCurrentLogoPost] = useState('');
+  const[currentReviewsPost, setCurrentReviewsPost] = useState({});
 
   const selectCurrentPost = (post) => {
     setCurrentDecPost(post.description);
     setCurrentUsernamePost(post.username);
     setCurrentLogoPost(post.logo);
     setCurrentTitlePost(post.title);
+    setCurrentReviewsPost(post.reviews);
   }
   return ( 
     <Router>
@@ -27,7 +29,7 @@ const App = () => {
         <Route path='/SignUp' element={<SignUp />}/>
         <Route path='/CreatePost' element={<CreatePost />}/>
         <Route path='/ShowPost' element={<ShowPost title={currentTitlePost} description={currentDecPost}
-        username={currentUsernamePost} logo={currentLogoPost}/>}/>
+        username={currentUsernamePost} logo={currentLogoPost} reviews={currentReviewsPost}/>}/>
         <Route exact path='/' element={<Home selectCurrentPost={selectCurrentPost}/>}/>
       </Routes>
 

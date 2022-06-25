@@ -1,0 +1,47 @@
+.container-add-review {
+    width: 40%;
+    margin-top: 2rem;
+    margin-left: 27rem;
+    display: block;
+    flex-wrap: wrap;
+    border-radius: 0px;
+    background: linear-gradient(90deg, #f8e5d5,#f1c299 100%);
+    box-shadow: 0px 20px 10px -7px #0000002a;
+    margin-bottom: 1rem;
+}
+
+.container-input-add-review {
+    width: 90%;
+    margin-left: 1.9rem;
+    background: linear-gradient(90deg, #f8e5d5,#f3d4b8 100%);
+}
+
+.title-add-review h2 {
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    padding: 10px 0px;
+    color: #333333;
+    display: flex;
+    align-items: center;
+}
+
+.submit-add-review {
+    padding: 5px 20px;
+    width: 50%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 9.5rem;
+    border-radius:4px;
+    outline: none;
+    border:none;
+    cursor:pointer;
+    color: white;
+    background-color: #333333;
+    font-family: 'Poppins', sans-serif;
+}
+  
+.submit-add-review:hover {
+    padding: 5px 20px;
+    background-color: #808080;
+    color: white;
+}
