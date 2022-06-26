@@ -1,8 +1,7 @@
 import React from 'react'
-import Button from './Button'
-import style from '../CreatePost.css'
 import { useState, useEffect} from 'react';
 import NavBar from './NavBar.js';
+import '../CreatePost.css'
 import {sendNewPost, sendImage} from '../api/posts'
 
 const CreatePost = () => {
@@ -22,7 +21,6 @@ const CreatePost = () => {
     }
     one_time = false;
   }, []);
-
   function sleep(ms){
     return new Promise( resolver => setTimeout(resolver, ms));
    };
@@ -32,26 +30,26 @@ const CreatePost = () => {
   async function handleSubmit(e) {
     e.preventDefault()
     console.log(image)
-    if (title != '' && description != '') {
+    if (title !== '' && description !== '') {
       if (!wrongImg){
         //here we call sendImage() and sendNewPost() for sending the image and the input data to the server.
         sendImage(image);
         await sleep(500)
         sendNewPost(title,description)
-        //Displays successfull message in front for 5 seconds.
+        //Displays successfull message in front for 4 seconds.
         setUploadedPost(true);
-        await sleep(5000)
+        await sleep(4000)
         setUploadedPost(false);
       } else {
-        //Displays error message in front for 5 seconds.
+        //Displays error message in front for 4 seconds.
         setError1(true);
-        await sleep(5000)
+        await sleep(4000)
         setError1(false);
       }
     } else {
-      //Displays error message in front for 5 seconds.
+      //Displays error message in front for 4 seconds.
       setError2(true);
-      await sleep(5000)
+      await sleep(4000)
       setError2(false);
     }
   }
@@ -61,7 +59,7 @@ const CreatePost = () => {
     e.preventDefault();
     const formData = new FormData();
     var ending = e.target.files[0].name.split(".");
-    var ending = ending[ending.length - 1];
+    ending = ending[ending.length - 1];
     if(ending === 'jpg' || ending === 'jpeg' || ending === 'png'){
       setWrongImg(false);
       formData.append('file', e.target.files[0])
@@ -77,8 +75,8 @@ const CreatePost = () => {
   /* Here we check if the client logged to the app, 
   if so we will display the CreatePost page. */
   async function checkIfLoggedIn() {
-    var response = await fetch('http://localhost:5000/getCurrentUser');
-    var user = await response.json();
+    const response = await fetch('http://localhost:5000/getCurrentUser');
+    const user = await response.json();
     if (user.username != '') {
       setIsLogged(true);
     }
@@ -96,21 +94,21 @@ const CreatePost = () => {
                 placeholder="Recipe name" value={title} 
                 onChange={(e) => setTitle(e.target.value)}/>
               </div>
-              <p>Nice now please add the description:</p>
+              <p>Nice, Now please add the description of the recipe:</p>
               <div className="description-create-post">
               <textarea
                 value={description} 
                 onChange={(e) => setDescription(e.target.value)}/>   
               </div>
               <div className="logo-create-post">
-                  <p>Were almos there, Now just choose an image of your taste.</p>
+                  <p>Were almost there, Now just choose an image of your taste.</p>
               </div>
               <div className='img-input-create-post'>
               <input type="file" name='file' onChange={handleFileChange} />
               </div>
               <div className='errors-create-post'>
               {uploadedPost && <p>Created Post Succssesfuly!</p>}
-              {error1 && <p>Please enter a valid image</p>}
+              {error1 && <p>Please enter a valid image.</p>}
               {error2 && <p>Title or Description empties!</p>}
               </div>
                <div className='input-submit-create-post'>

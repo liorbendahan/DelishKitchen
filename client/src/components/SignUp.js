@@ -32,16 +32,16 @@ const SignUp = () => {
       }
     });
     if (username === '' || password === '' || confirme_password === '') {
-      //Displays error message in front for 5 seconds.
+      //Displays error message in front for 4 seconds.
       setError1(true);
-      await sleep(5000);
+      await sleep(4000);
       setError1(false);
     }else {
       if (already_existing){
         console.log("USERNAME ALREADY_EXISTS")
-        //Displays error message in front for 5 seconds.
+        //Displays error message in front for 4 seconds.
         setError2(true);
-        await sleep(5000)
+        await sleep(4000)
         setError2(false);
       } else{
         if (password === confirme_password) {
@@ -51,16 +51,16 @@ const SignUp = () => {
           setPassword("");
           setConfirmPassword("");
           already_existing = false;
-          //Displays Succssesfull message in front for 5 seconds.
+          //Displays Succssesfull message in front for 4 seconds.
           setLoggedSuccessfuly(true);
-          await sleep(5000);
+          await sleep(4000);
           setLoggedSuccessfuly(false);
         } else{
           console.log("PASSWORD DONT MATCH!");
           already_existing = false;
-          //Displays error message in front for 5 seconds.
+          //Displays error message in front for 4 seconds.
           setError3(true);
-          await sleep(5000);
+          await sleep(4000);
           setError3(false);
         }
       }

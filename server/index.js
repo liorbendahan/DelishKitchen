@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 5000;
 var current_username = ''
 var current_username_password = ''
 var post_image_name = ''
+var current_logo_show = ''
 
 //Handeling our db, mongoose.
 const Schema = mongoose.Schema;
@@ -59,6 +60,7 @@ app.post('/uploadImageToServer', (req, res) => {
       }else {
         post_image_name = req.file.filename;
         console.log("Got image " + post_image_name)
+        res.sendStatus(200);
       }
     });
   });
@@ -82,12 +84,14 @@ app.post('/addNewUser',async (req,res) =>{
 app.post('/sendCurrentUser',async (req,res) =>{
     current_username = req.body.user
     current_username_password = req.body.password
-    console.log("New user connected!")   
+    console.log("Current user: " + current_username)  
+    res.sendStatus(200); 
 });
 
 /* here we get the title and description of the new post, 
 And we upload it to the db */
 app.post('/sendNewPost',async (req,res) =>{
+    console.log("Entered to create the post")
     const username = current_username
     const title = req.body.title
     const description = req.body.description
@@ -99,6 +103,7 @@ app.post('/sendNewPost',async (req,res) =>{
     try {
         await newPost.save(async (err,newPostResult) => {
             console.log('New post created')
+            res.sendStatus(200);
         });
     } catch(err) {
         console.log(err);
@@ -113,14 +118,9 @@ app.post('/addNewReview',async (req,res) =>{
         $push: { reviews: {username: current_username, description: req.body.description,
         date: new Date().toLocaleDateString()}  }
     });
-    console.log("Got new review")
+    res.sendStatus(200);
 });
 
-app.post('/logOut',async (req,res) =>{
-    current_username = ''
-    current_username_password = ''
-    console.log("Logged out")
-});
 /* Here we send to the front all the current users from the db */
 app.get('/getUsers', (req,res) =>{
     UserModule.find({}, (err,result)=>{
@@ -129,22 +129,39 @@ app.get('/getUsers', (req,res) =>{
             res.json(result);
         }
     })
-})
+});
 //Here we send the username and password of the current client.
 app.get('/getCurrentUser', (req,res) =>{
     res.json({username: current_username, password: current_username_password});
     console.log("Checked login" + current_username)   
-
-})
+});
 //Here we send all the posts that are currently created.
 app.get('/getAllPosts', (req,res) =>{
+    
     PostModule.find({}, (err,result)=>{
         if (err) {
-        } else {
+            res.sendStatus(500);
+          }else {
             res.json(result);
-        }
+          }
     })
-})
+});
+app.post('/getCurrentLogo', (req,res) =>{
+    current_logo_show = req.body.logo
+    console.log(current_logo_show)
+    res.sendStatus(200);
+});
+app.get('/getPost',(req,res) =>{
+    console.log("entered to show Post")
+    PostModule.findOne({logo: current_logo_show}, (err, result)=> {
+          if (err) {
+            res.sendStatus(500);
+          }else {
+            res.json(result);
+          }
+
+    })
+});
 
 
 

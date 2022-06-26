@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-URL = "http://localhost:5000"
+const URL = "http://localhost:5000"
 
 //Here we send the server a new user for him to add.
 export const addNewUser = (username, password) => Axios.post(`${URL}/addNewUser`,{
@@ -15,21 +15,25 @@ export const sendCurrentUser = (username, password) => Axios.post(`${URL}/sendCu
 }).then(console.log("Sended current user: " + username + " " + password));
 
 //Here we send the server the title and description of the new post
-export const sendNewPost = (title, description) => Axios.post(`${URL}/sendNewPost`,{
+export const sendNewPost = (title, description) =>  Axios.post(`${URL}/sendNewPost`,{
   title: title,
   description: description
-}).then(console.log("Sended new post"));
+}).then(response => console.log(response));
 
 //Here we send the server the image from the CreatePost page.
-export const  sendImage = (image) =>  Axios.post(`${URL}/uploadImageToServer`, image).then();
+export const  sendImage = (image) => Axios.post(`${URL}/uploadImageToServer`, image)
+.then(response => console.log(response));
 
 //Here we send the server a new review for him to add to the db.
 export const  sendNewReview = (review, logo) =>  Axios.post(`${URL}/addNewReview`, {
   description: review,
   logo: logo
-}).then();
+}).then(response => console.log(response));
+
 
 //here we send the server a request to logout from the client.
-export const  logOut = () =>  Axios.post(`${URL}/logOut`, {}).then();
+export const  passCurrentPost = (logo) =>  Axios.post(`${URL}/getCurrentLogo`, {logo: logo})
+.then(response => console.log(response));
+
 
 

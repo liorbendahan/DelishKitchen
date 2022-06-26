@@ -4,7 +4,6 @@ import '../Navbar.css'
 import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import {logOut} from '../api/posts'
 
 
 const NavBar = ({searchPost}) => {
@@ -38,7 +37,6 @@ const NavBar = ({searchPost}) => {
   const goToLogIn = (e) => {
     e.preventDefault()
     navigate('/LogIn')
-    logOut();
   }
 
   return (
@@ -57,7 +55,7 @@ const NavBar = ({searchPost}) => {
           </li>
           <li>
           <input  className='nav-input' type="text" 
-              placeholder="Enter post"
+              placeholder="Search for a recipe..."
               onChange={(e) => sendPostName(e)}/> 
               </li> 
               <li>

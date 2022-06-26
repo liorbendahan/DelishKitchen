@@ -2,20 +2,30 @@ import { useState } from 'react'
 import style from '../AddReview.css'
 import TextField from '@mui/material/TextField'; 
 import { sendNewReview } from '../api/posts';
+import Axios from 'axios';
 
 const AddReview = ({logo, onAddReview}) => {
-  const [review, setReview] = useState('')
-  function sleep(ms){
-    return new Promise( resolver => setTimeout(resolver, ms));
-   };
-  const onSubmit = (e) =>{
+  const [review, setReview] = useState('');
+  const onSubmit =async (e) =>{
     e.preventDefault()
-    if(review === '') {
-      alert('Please enter first a review!')
-    } else {
-      sendNewReview(review,logo);
-      onAddReview(review);
-    } 
+
+    var response = await fetch('http://localhost:5000/getCurrentUser');
+    var user = await response.json();
+    var loggedIn = false;
+    if (user.username !== '') {
+      loggedIn= true;
+    }
+    if (loggedIn) {
+      if(review === '') {
+        alert('Please enter first a review!')
+      } else {
+        sendNewReview(review,logo);
+        onAddReview(review, user.username);
+        setReview('');
+      } 
+    }else {
+      alert('Please login first!')
+    }
   }
 
   return (

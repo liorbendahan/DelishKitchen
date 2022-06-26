@@ -3,7 +3,7 @@
   }
    
   body {
-    background-image: url("http://localhost:5000/background.png");
+    background-image: url("http://localhost:5000/background.webp");
   }
   
   .center {
@@ -11,7 +11,7 @@
     display:flex;
     flex-direction:column;
     justify-content: center;
-    color: #333333;
+    color: white;
     align-items: center;
     height: 90vh;
     padding: 30px;
@@ -25,7 +25,7 @@
     font-size: 18px;
     margin: 5px;
     border-radius: 4px;
-    color: #333333;
+    color: white;
     font-family: 'Montserrat';
     background-color: rgba(255, 255, 255, 0.3);
     border:none;
@@ -35,7 +35,7 @@
   } 
 
   .par p{
-    color: #333333;
+    color: white;
   }
 
 
@@ -47,7 +47,7 @@
     font-size: 20px;
     border-radius: 2px;
     border-bottom: 1;
-    color: #333333;
+    color: #ffa697;
     background-color: white;
     border:none;
     

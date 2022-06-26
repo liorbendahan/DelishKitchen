@@ -4,7 +4,7 @@ import Post from './Post.js';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Home = ({selectCurrentPost}) => {
+const Home = () => {
   const [posts, setPosts] = useState([]);
   const [lastLogo, setLastLogo] = useState('');
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ const Home = ({selectCurrentPost}) => {
   /*Here we show the posts to the client,
   no matter if the client serched the spesific post he wants to see or not.*/
   const searchPosts = async (name) => {
+    console.log("Entered to select to posts")
     const response = await fetch('http://localhost:5000/getAllPosts');
     const data = await response.json();
     console.log(data);
@@ -46,8 +47,7 @@ const Home = ({selectCurrentPost}) => {
   /*Here we enter after the client dobleClick a spesific post.
   We will navigate to another page to show to full recipie of the post to the client. */
   function ShowPost(post) {
-    navigate('/ShowPost');
-    selectCurrentPost(post);
+    navigate(`ShowPost/${post.logo}`);
   }
 
   return (
@@ -61,7 +61,7 @@ const Home = ({selectCurrentPost}) => {
         </div>
         ) : (
         <div className="empty">
-          <h2>No Posts found yet.</h2>
+          <h2></h2>
         </div>
          )}
       </div>

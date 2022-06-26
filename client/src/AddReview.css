@@ -1,19 +1,18 @@
 .container-add-review {
-    width: 40%;
+    width: 600px;
     margin-top: 2rem;
-    margin-left: 27rem;
-    display: block;
-    flex-wrap: wrap;
-    border-radius: 0px;
-    background: linear-gradient(90deg, #f8e5d5,#f1c299 100%);
-    box-shadow: 0px 20px 10px -7px #0000002a;
+    margin-left: 5rem;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    background: linear-gradient(90deg, white,white 100%);
+    box-shadow: 0px 20px 10px -7px #0000002a;
 }
 
 .container-input-add-review {
     width: 90%;
     margin-left: 1.9rem;
-    background: linear-gradient(90deg, #f8e5d5,#f3d4b8 100%);
+    background: linear-gradient(90deg, white,white 100%);
 }
 
 .title-add-review h2 {
@@ -36,7 +35,7 @@
     border:none;
     cursor:pointer;
     color: white;
-    background-color: #333333;
+    background: linear-gradient(90deg, #db8e87,#dc6c7a 100%);
     font-family: 'Poppins', sans-serif;
 }
   
@@ -44,4 +43,8 @@
     padding: 5px 20px;
     background-color: #808080;
     color: white;
+}
+
+.label {
+    background-color: #333333;
 }

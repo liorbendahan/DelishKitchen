@@ -4,63 +4,81 @@ import NavBar from './NavBar.js';
 import style from '../ShowPost.css';
 import Reviews from './Reviews'
 import AddReview from './AddReview'
+import { passCurrentPost } from '../api/posts.js';
 
-const ShowPost = ({title, description, username, logo, reviews}) => {
+const ShowPost = () => {
   const [allReviews, setAllReviews] = useState([]);
-  const [logged, setLoggedIn] = useState(false);
-
+  const [username, setUsername] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [logo, setLogo] = useState('');
+  const [valid, setValid] = useState(false);
   /*In every render, we want to check if the user is logged in,
   and update all the reviews */
   var one_time = true;
    useEffect( () => {
     if (one_time) {
-      updateAllReviews();
-      checkLogin();
+      getPost()
     }
     one_time = false;
   }, []);
-  //here we check if the user is logged in.
-  async function checkLogin() { 
-    var response = await fetch('http://localhost:5000/getCurrentUser');
-    var user = await response.json();
-    if (user.username != '') {
-      setLoggedIn(true);
+  function sleep(ms){
+    return new Promise( resolver => setTimeout(resolver, ms));
+   };
+  const getPost =async () => {
+    var logo = window.location.pathname
+    logo = logo.split('/')[2];
+    //here we send a post request to show to server with post from the db he needs to send to us.
+    passCurrentPost(logo);
+    setLogo(logo);
+    console.log("entered")
+    await sleep(100)
+    var response = await fetch('http://localhost:5000/getPost');
+    var post = await response.json();
+    console.log(post)
+    if (post === "nothing"){
+      console.log("nothing")
+    } else {
+      setUsername(post.username);
+      setDescription(post.description);
+      setTitle(post.title);
+      setAllReviews(post.reviews);
+      setValid(true);
     }
-  }
-  //here we update all the reviews for insert them in the page.
-  const updateAllReviews = () => {
-      setAllReviews(reviews);
   };
   /*Here we add the new review inserted, this review is not permanent.
   the actully new review is sended to the server and in the next render of the page we put it*/
-  const addNewReview =async (review) => {
-      console.log(reviews);
-      var response = await fetch('http://localhost:5000/getCurrentUser');
-      var user = await response.json();
-      console.log(allReviews);
+  const addNewReview =async (review, username) => {
       if (allReviews.length === 0) {
-        setAllReviews([{username: user.username, description: review, date: new Date().toLocaleDateString()}]);
+        setAllReviews([{username: username, description: review, date: new Date().toLocaleDateString()}]);
       }else {
-        setAllReviews([...allReviews,{username: user.username, description: review, date: new Date().toLocaleDateString()}]); 
+        setAllReviews([...allReviews,{username: username, description: review, date: new Date().toLocaleDateString()}]); 
       } 
-  }
+  };
   return (
     <div>
       <NavBar />
-      <div className="container-show-post">
-        <div className="img-container-show-post">
-          <img src={`http://localhost:5000/${logo}`} alt="pic 1"/>
-        </div>
-        <div className="title_post-show-post username_post-show-post">
-            <h1>{title}</h1>
-            <h3>Shared By: {username}</h3>
-        </div>
-        <div className="description-post-show-post">
-            <p>{description}</p>
-        </div>
-      </div>
-      <Reviews reviews={allReviews}/>
-      {logged && <AddReview logo={logo} username={username} onAddReview={addNewReview}/>}
+      {valid &&
+      <div >
+         <div className="third">
+            <div className="container-show-post">
+              <div className="title_post-show-post username_post-show-post">
+              <h1>{title}</h1>
+              <h3>Shared By: {username}</h3>
+              </div>
+              <div className="description-post-show-post">
+              <p>{description}</p>
+               </div>
+               <div className="img-container-show-post">
+                {logo && <img src={`http://localhost:5000/${logo}`} alt="pic 1"/>}
+              </div>
+            </div>
+              <div>
+              <AddReview logo={logo} onAddReview={addNewReview}/>
+              <Reviews className="container-review" reviews={allReviews}/>
+              </div>
+          </div>
+      </div>}
     </div>
   )
 }

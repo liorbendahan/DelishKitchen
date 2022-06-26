@@ -17,6 +17,13 @@ const Login = () => {
     return new Promise( resolver => setTimeout(resolver, ms));
    };
 
+  var one_time = true;
+  useEffect( () => {
+  if (one_time) {
+    sendCurrentUser('', '');
+   }
+   one_time = false;
+  }, []);
   /*Get all the current users from the server and then checks if the 
   username and password input are in the db (if the user exists)
   if so, we enter the aplicacion. */

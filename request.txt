@@ -63,4 +63,20 @@ const Post = () => {
   )
 }
 
+app.get('/getPost',(req,res) =>{
+    console.log("entered to show Post")
+    PostModule.findOne({logo: current_logo_show}, function(err, result) {
+        if (result === null) {
+            res.json("nothing")
+        } else {
+            res.json(result)
+        }
+    }) 
+    console.log("Showed Post")
+});
+app.post('/getCurrentLogo', (req,res) =>{
+    current_logo_show = req.body.logo
+    console.log(current_logo_show)
+})
+
 

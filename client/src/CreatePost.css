@@ -3,11 +3,12 @@
 .container-create-post {
     width: 50%;
     margin-top: 1rem;
+    margin-bottom: 2rem;
     margin-left: 23rem;
     display: block;
     flex-wrap: wrap;
     border-radius: 12px;
-    background: linear-gradient(90deg,#f1c299, #f8e5d5 100%);
+    background: linear-gradient(90deg, white, white 100%);
 }
 
 
@@ -18,9 +19,9 @@
     font-size: 18px;
     margin: 15px;
     border-radius: 4px;
-    color: white;
+    color: #333333;
     font-family: 'Poppins', sans-serif;
-    background-color: #333333;
+    background: linear-gradient(90deg, #f0d37b, #edd18f 100%);
     border:none;
     position: relative;
     padding: 0px 15px;
@@ -46,8 +47,9 @@
 .description-create-post textarea {
     width: 420px;
     height: 280px;
-    color:#333333;
-    background: linear-gradient(90deg,#f1c299, #f8e5d5 100%);
+    color:black;
+    font-size: 15px;
+    background: linear-gradient(90deg,#f0d37b, #f1c999 100%);
     margin: 15px;
     resize: none; 
 }
@@ -72,9 +74,9 @@
     height: 35px;
     font-size: 18px;
     border-radius: 4px;
-    color: rgb(255, 255, 255);
+    color: #000000;
     font-family: 'Montserrat';
-    background-color: #333333;
+    background: linear-gradient(90deg, #e7948d, #e06e7c 100%);
     border:none;
     margin-left: 135px;
     margin-bottom: 13px;
