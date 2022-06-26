@@ -39,11 +39,25 @@
   }
 
 
-  .field input {
+  .field-login input {
     width: 104%;
     height: 30px;
     margin: 1px;
     padding: 1px 99px;
+    font-size: 20px;
+    border-radius: 2px;
+    border-bottom: 1;
+    color: #ffa697;
+    background-color: white;
+    border:none;
+    
+  }
+
+  .field-sign-up input {
+    width: 104%;
+    height: 30px;
+    margin: 1px;
+    padding: 2px 55px;
     font-size: 20px;
     border-radius: 2px;
     border-bottom: 1;

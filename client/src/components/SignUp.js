@@ -91,8 +91,8 @@ const SignUp = () => {
          onChange={(e) => setConfirmPassword(e.target.value)}/>
         </div>
 
-        <div className='field'>
-          <input type='submit' value='Log in'/>
+        <div className='field-sign-up'>
+          <input type='submit' value='Create account'/>
         </div>
         <div className='par'>
         <Link to= '/LogIn' style={{ textDecoration: 'none' }}>
