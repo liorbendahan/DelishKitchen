@@ -1,3 +1,4 @@
+//Just a tipical button component.
 const Button = ({color, text, onClick}) => {
     return (
       <button className='btn'

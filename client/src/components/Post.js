@@ -2,7 +2,7 @@ import React from 'react'
 import style from '../Post.css'
 
 
-const Post = ({ post: { title, description ,username,logo,reviews} , onDoubleClick}) => {
+const Post = ({ post: { title, description ,username, logo, reviews} , onDoubleClick}) => {
 
   return (
     //This is the components of the post we show in the menu page.

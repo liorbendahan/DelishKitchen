@@ -12,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errortype, setErroType] = useState(false);
   const navigate = useNavigate();
-
+  //A sleep fuction that will help us in the future.
   function sleep(ms){
     return new Promise( resolver => setTimeout(resolver, ms));
    };
@@ -33,6 +33,7 @@ const Login = () => {
     var response = await fetch('http://localhost:5000/getUsers');
     var users = await response.json();
     var matching = false;
+    //Here we loop through the users in the db, and check if the username and password correspond.
     Array.from(users).map(element => {
       if (element.username === username &&
         element.password === password)
@@ -49,9 +50,9 @@ const Login = () => {
       matching = false;
     } else {
       console.log("Wrong username or password");
-      //Displays error message in front for 5 seconds.
+      //Displays error message in front for 4 seconds.
       setErroType(true);
-      await sleep(5000)
+      await sleep(4000)
       setErroType(false);
     } 
   }

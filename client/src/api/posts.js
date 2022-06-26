@@ -2,6 +2,9 @@ import Axios from 'axios';
 
 const URL = "http://localhost:5000"
 
+
+//NOTE: on this file we will handle all the posts request we send to the server.
+
 //Here we send the server a new user for him to add.
 export const addNewUser = (username, password) => Axios.post(`${URL}/addNewUser`,{
   user: username,
@@ -31,7 +34,7 @@ export const  sendNewReview = (review, logo) =>  Axios.post(`${URL}/addNewReview
 }).then(response => console.log(response));
 
 
-//here we send the server a request to logout from the client.
+//here we send the server the current logo(name of the image) we are looking at in the ShowPage.
 export const  passCurrentPost = (logo) =>  Axios.post(`${URL}/getCurrentLogo`, {logo: logo})
 .then(response => console.log(response));
 

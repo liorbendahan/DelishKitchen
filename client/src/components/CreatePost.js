@@ -21,6 +21,7 @@ const CreatePost = () => {
     }
     one_time = false;
   }, []);
+  //A sleep fuction that will help us in the future.
   function sleep(ms){
     return new Promise( resolver => setTimeout(resolver, ms));
    };

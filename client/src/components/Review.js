@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
 import style from '../Review.css'
 
 const Review = ({review:{username, description, date}}) => {

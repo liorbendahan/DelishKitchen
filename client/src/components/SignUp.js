@@ -12,6 +12,7 @@ const SignUp = () => {
   const [error1, setError1] = useState(false);
   const [error2, setError2] = useState(false);
   const [error3, setError3] = useState(false);
+  //A sleep fuction that will help us in the future.
   function sleep(ms){
     return new Promise( resolver => setTimeout(resolver, ms));
    };

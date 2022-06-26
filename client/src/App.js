@@ -5,10 +5,9 @@ import Home from './components/Home';
 import {BrowserRouter as Router,Routes, Route} from 'react-router-dom';
 import CreatePost from './components/CreatePost';
 import ShowPost from './components/ShowPost';
-import { useState, useEffect } from 'react';
 
 const App = () => {
-
+  
   return ( 
     <Router>
       <div className= "App">

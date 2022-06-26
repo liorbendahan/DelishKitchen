@@ -25,14 +25,22 @@ const ShowPost = () => {
   function sleep(ms){
     return new Promise( resolver => setTimeout(resolver, ms));
    };
+
+   /* This is a function that gets the post the client wants to see,
+   he first sends a get request to the server, gets the post and update the useStates.
+   We need this fuction to open the ShowPage every render, no matter if the client double clicked the
+   post from the home page or the client writed the url just like that in the browser*/
   const getPost =async () => {
+    /*getting the url of the logo (It is a part of the url of the page)
+    The website url now is .../ShowPost/(the logo that acts like an id)*/
     var logo = window.location.pathname
     logo = logo.split('/')[2];
     //here we send a post request to show to server with post from the db he needs to send to us.
     passCurrentPost(logo);
     setLogo(logo);
-    console.log("entered")
     await sleep(100)
+    /*here we get the post from the server, (in the backend the server gets the logoName and
+    knows wich post to send)*/
     var response = await fetch('http://localhost:5000/getPost');
     var post = await response.json();
     console.log(post)
@@ -47,7 +55,7 @@ const ShowPost = () => {
     }
   };
   /*Here we add the new review inserted, this review is not permanent.
-  the actully new review is sended to the server and in the next render of the page we put it*/
+  the actually new review is sended to the server and in the next render of the page we put it*/
   const addNewReview =async (review, username) => {
       if (allReviews.length === 0) {
         setAllReviews([{username: username, description: review, date: new Date().toLocaleDateString()}]);
